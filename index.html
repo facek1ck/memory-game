@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Memory Game</title>
+  <meta name="description" content="Memory Game">
+  <meta name="author" content="mem">
+
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+        <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h1 class="title">Memory Game</h1>
+                  </div>
+                </div>
+                <div class="row stats">
+                  <div class="col-xs-6">
+                    Matches Left: <span class="matches-left" data-bind="text: matchesLeft"></span><br>
+                    Turns Taken: <span class="turns-taken" data-bind="text: turnsTaken"></span>
+                  </div>
+                  <div class="col-xs-6">
+                    Picked Tiles:<br>
+                    <div class="hidden pick" data-bind="if: pickedTile1, css: { hidden: false }">
+                      <span data-bind="visible: pickedTile1, text: pickedTile1().name"></span>
+                    </div>
+                      <div class="hidden pick" data-bind="if: pickedTile2, css: { hidden: false }">
+                        <span data-bind="visible: pickedTile2, text: pickedTile2().name"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(0, 4) }">
+                </div>
+                <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(4, 8) }">
+                </div>
+                <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(8, 12) }">
+                </div>
+                <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(12) }">
+                </div>
+              </div>
+          
+              <div class="hidden game-over" data-bind="visible: matchesLeft() === 0, css: { hidden: false }">
+                <p>You Won!</p>
+                <p>It took you <span data-bind="text: turnsTaken"></span> turns.</p>
+                <button class="btn btn-lg btn-primary btn-play-again"  data-bind="click: playAgain">Play Again</button>
+              </div>
+          
+              <script type="text/html" id="tile-template">
+                <div class="col-xs-3">
+                  <div class="tile">
+                    <img src="" alt="tile" class="img-responsive center-block tile-img"
+                      data-bind="attr: { src: imageUrl() }, style: { visibility: !matched() ? 'visible' : 'hidden' }, click: $parent.pickTile">
+                  </div>
+                </div>
+              </script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+              <script src="resources/js/app.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
