@@ -1,5 +1,82 @@
 /* JSON Object to hold data for tiles to be used */
-var cards = [
+var animals = [
+    {
+      'id': 1,
+      'name': 'Cat',
+      'image': 'resources/images/cat.png'
+    },
+    {
+      'id': 2,
+      'name': 'Chicken',
+      'image': 'resources/images/chicken.png'
+    },
+    {
+      'id': 3,
+      'name': 'Cow',
+      'image': 'resources/images/cow.png'
+    },
+    {
+      'id': 4,
+      'name': 'Dog',
+      'image': 'resources/images/dog.png'
+    },
+    {
+      'id': 5,
+      'name': 'Duck',
+      'image': 'resources/images/duck.png'
+    },
+    {
+      'id': 6,
+      'name': 'Elephant' ,
+      'image': 'resources/images/elephant.png'
+    },
+    {
+      'id': 7,
+      'name': 'Farmer',
+      'image': 'resources/images/farmer.png'
+    },
+    {
+      'id': 8,
+      'name': 'Goat',
+      'image': 'resources/images/goat.png'
+    },
+    {
+      'id': 9,
+      'name': 'Gorilla',
+      'image': 'resources/images/gorilla.png'
+    },
+    {
+      'id': 10,
+      'name': 'Lion',
+      'image': 'resources/images/lion.png'
+    },
+    {
+      'id': 11,
+      'name': 'Pig',
+      'image': 'resources/images/pig.png'
+    },
+    {
+      'id': 12,
+      'name': 'Sheep',
+      'image': 'resources/images/sheep.png'
+    },
+    {
+      'id': 13,
+      'name': 'Swan',
+      'image': 'resources/images/swan.png'
+    },
+    {
+      'id': 14,
+      'name': 'Zebra' ,
+      'image': 'resources/images/zebra.png'
+    },
+      {
+      'id': 15,
+      'name': 'Crow' ,
+      'image': 'resources/images/crow.png'
+    }
+  ];  
+var emojis = [
     {
       'id': 1,
       'name': 'Cat',
@@ -76,7 +153,7 @@ var cards = [
       'image': 'resources/images/crow.png'
     }
   ];
-  
+  var cards = animals;
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);

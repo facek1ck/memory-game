@@ -27,7 +27,7 @@ body {
 
 .stats {
   background-color: #ededed;
-  color: #353535;
+  /*color: #353535;*/
   margin: 0 1.25em;
   padding: .25em;
   font: bold 1em Verdana, Arial, sans-serif;
