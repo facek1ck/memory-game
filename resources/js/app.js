@@ -3,157 +3,157 @@ var animals = [
     {
       'id': 1,
       'name': 'Cat',
-      'image': 'resources/images/cat.png'
+      'image': 'resources/images/Animals/cat.png'
     },
     {
       'id': 2,
       'name': 'Chicken',
-      'image': 'resources/images/chicken.png'
+      'image': 'resources/images/Animals/chicken.png'
     },
     {
       'id': 3,
       'name': 'Cow',
-      'image': 'resources/images/cow.png'
+      'image': 'resources/images/Animals/cow.png'
     },
     {
       'id': 4,
       'name': 'Dog',
-      'image': 'resources/images/dog.png'
+      'image': 'resources/images/Animals/dog.png'
     },
     {
       'id': 5,
       'name': 'Duck',
-      'image': 'resources/images/duck.png'
+      'image': 'resources/images/Animals/duck.png'
     },
     {
       'id': 6,
       'name': 'Elephant' ,
-      'image': 'resources/images/elephant.png'
+      'image': 'resources/images/Animals/elephant.png'
     },
     {
       'id': 7,
       'name': 'Farmer',
-      'image': 'resources/images/farmer.png'
+      'image': 'resources/images/Animals/farmer.png'
     },
     {
       'id': 8,
       'name': 'Goat',
-      'image': 'resources/images/goat.png'
+      'image': 'resources/images/Animals/goat.png'
     },
     {
       'id': 9,
       'name': 'Gorilla',
-      'image': 'resources/images/gorilla.png'
+      'image': 'resources/images/Animals/gorilla.png'
     },
     {
       'id': 10,
       'name': 'Lion',
-      'image': 'resources/images/lion.png'
+      'image': 'resources/images/Animals/lion.png'
     },
     {
       'id': 11,
       'name': 'Pig',
-      'image': 'resources/images/pig.png'
+      'image': 'resources/images/Animals/pig.png'
     },
     {
       'id': 12,
       'name': 'Sheep',
-      'image': 'resources/images/sheep.png'
+      'image': 'resources/images/Animals/sheep.png'
     },
     {
       'id': 13,
       'name': 'Swan',
-      'image': 'resources/images/swan.png'
+      'image': 'resources/images/Animals/swan.png'
     },
     {
       'id': 14,
       'name': 'Zebra' ,
-      'image': 'resources/images/zebra.png'
+      'image': 'resources/images/Animals/zebra.png'
     },
       {
       'id': 15,
       'name': 'Crow' ,
-      'image': 'resources/images/crow.png'
+      'image': 'resources/images/Animals/crow.png'
     }
   ];  
-var emojis = [
+var christmas = [
     {
       'id': 1,
-      'name': 'Cat',
-      'image': 'resources/images/cat.png'
+      'name': 'Bulb',
+      'image': 'resources/images/Christmas/Bulb.png'
     },
     {
       'id': 2,
-      'name': 'Chicken',
-      'image': 'resources/images/chicken.png'
+      'name': 'CandyCane',
+      'image': 'resources/images/Christmas/CandyCane.png'
     },
     {
       'id': 3,
-      'name': 'Cow',
-      'image': 'resources/images/cow.png'
+      'name': 'Elf',
+      'image': 'resources/images/Christmas/Elf.png'
     },
     {
       'id': 4,
-      'name': 'Dog',
-      'image': 'resources/images/dog.png'
+      'name': 'Garland',
+      'image': 'resources/images/Christmas/Garland.png'
     },
     {
       'id': 5,
-      'name': 'Duck',
-      'image': 'resources/images/duck.png'
+      'name': 'Gingerbread House',
+      'image': 'resources/images/Christmas/GingerbreadHouse.png'
     },
     {
       'id': 6,
-      'name': 'Elephant' ,
-      'image': 'resources/images/elephant.png'
+      'name': 'Gingerbread Man' ,
+      'image': 'resources/images/Christmas/GingerbreadMan.png'
     },
     {
       'id': 7,
-      'name': 'Farmer',
-      'image': 'resources/images/farmer.png'
+      'name': 'Mistletoe',
+      'image': 'resources/images/Christmas/Mistletoe.png'
     },
     {
       'id': 8,
-      'name': 'Goat',
-      'image': 'resources/images/goat.png'
+      'name': 'Present',
+      'image': 'resources/images/Christmas/Present.png'
     },
     {
       'id': 9,
-      'name': 'Gorilla',
-      'image': 'resources/images/gorilla.png'
+      'name': 'Rudolph',
+      'image': 'resources/images/Christmas/Rudolph.png'
     },
     {
       'id': 10,
-      'name': 'Lion',
-      'image': 'resources/images/lion.png'
+      'name': 'Santa',
+      'image': 'resources/images/Christmas/Santa.png'
     },
     {
       'id': 11,
-      'name': 'Pig',
-      'image': 'resources/images/pig.png'
+      'name': 'Santa\'s Hat',
+      'image': 'resources/images/Christmas/SantaHat.png'
     },
     {
       'id': 12,
-      'name': 'Sheep',
-      'image': 'resources/images/sheep.png'
+      'name': 'Sleigh',
+      'image': 'resources/images/Christmas/Sleigh.png'
     },
     {
       'id': 13,
-      'name': 'Swan',
-      'image': 'resources/images/swan.png'
+      'name': 'Snowflake',
+      'image': 'resources/images/Christmas/Snowflake.png'
     },
     {
       'id': 14,
-      'name': 'Zebra' ,
-      'image': 'resources/images/zebra.png'
+      'name': 'Stocking' ,
+      'image': 'resources/images/Christmas/Stocking.png'
     },
       {
       'id': 15,
-      'name': 'Crow' ,
-      'image': 'resources/images/crow.png'
+      'name': 'Tree' ,
+      'image': 'resources/images/Christmas/Tree.png'
     }
   ];
-  var cards = animals;
+  var cards = christmas;
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
