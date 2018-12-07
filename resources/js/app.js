@@ -169,6 +169,9 @@ var christmas = [
     }
   ];
 
+  var backHome = function(){
+    window.location.replace('main.html');
+  }
   var cards=window[localStorage.getItem('selectedPack')];
   var Tile = function(data) {
     this.id = data.id;
