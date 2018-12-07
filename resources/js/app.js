@@ -3,77 +3,92 @@ var animals = [
     {
       'id': 1,
       'name': 'Cat',
-      'image': 'resources/images/Animals/cat.png'
+      'image': 'resources/images/Animals/cat.png',
+      'sound':'resources/sounds/animals/cat.wav'
     },
     {
       'id': 2,
       'name': 'Chicken',
-      'image': 'resources/images/Animals/chicken.png'
+      'image': 'resources/images/Animals/chicken.png',
+      'sound':'resources/sounds/animals/cat.wav'
     },
     {
       'id': 3,
       'name': 'Cow',
-      'image': 'resources/images/Animals/cow.png'
+      'image': 'resources/images/Animals/cow.png',
+      'sound':'resources/sounds/animals/cow.wav'
     },
     {
       'id': 4,
       'name': 'Dog',
-      'image': 'resources/images/Animals/dog.png'
+      'image': 'resources/images/Animals/dog.png',
+      'sound':'resources/sounds/animals/dog.wav'
     },
     {
       'id': 5,
       'name': 'Duck',
-      'image': 'resources/images/Animals/duck.png'
+      'image': 'resources/images/Animals/duck.png',
+      'sound':'resources/sounds/animals/duck.wav'
     },
     {
       'id': 6,
       'name': 'Elephant' ,
-      'image': 'resources/images/Animals/elephant.png'
+      'image': 'resources/images/Animals/elephant.png',
+      'sound':'resources/sounds/animals/elephant.wav'
     },
     {
       'id': 7,
       'name': 'Farmer',
-      'image': 'resources/images/Animals/farmer.png'
+      'image': 'resources/images/Animals/farmer.png',
+      'sound':'resources/sounds/animals/farmer.wav'
     },
     {
       'id': 8,
       'name': 'Goat',
-      'image': 'resources/images/Animals/goat.png'
+      'image': 'resources/images/Animals/goat.png',
+      'sound':'resources/sounds/animals/goat.wav'
     },
     {
       'id': 9,
       'name': 'Gorilla',
-      'image': 'resources/images/Animals/gorilla.png'
+      'image': 'resources/images/Animals/gorilla.png',
+      'sound':'resources/sounds/animals/gorilla.wav'
     },
     {
       'id': 10,
       'name': 'Lion',
-      'image': 'resources/images/Animals/lion.png'
+      'image': 'resources/images/Animals/lion.png',
+      'sound':'resources/sounds/animals/lion.wav'
     },
     {
       'id': 11,
       'name': 'Pig',
-      'image': 'resources/images/Animals/pig.png'
+      'image': 'resources/images/Animals/pig.png',
+      'sound':'resources/sounds/animals/pig.wav'
     },
     {
       'id': 12,
       'name': 'Sheep',
-      'image': 'resources/images/Animals/sheep.png'
+      'image': 'resources/images/Animals/sheep.png',
+      'sound':'resources/sounds/animals/sheep.wav'
     },
     {
       'id': 13,
       'name': 'Swan',
-      'image': 'resources/images/Animals/swan.png'
+      'image': 'resources/images/Animals/swan.png',
+      'sound':'resources/sounds/animals/cat.wav'
     },
     {
       'id': 14,
       'name': 'Zebra' ,
-      'image': 'resources/images/Animals/zebra.png'
+      'image': 'resources/images/Animals/zebra.png',
+      'sound':'resources/sounds/animals/zebra.wav'
     },
       {
       'id': 15,
       'name': 'Crow' ,
-      'image': 'resources/images/Animals/crow.png'
+      'image': 'resources/images/Animals/crow.png',
+      'sound':'resources/sounds/animals/crow.wav'
     }
   ];
 var christmas = [
@@ -153,11 +168,13 @@ var christmas = [
       'image': 'resources/images/Christmas/Tree.png'
     }
   ];
-  var cards = christmas;
+
+  var cards=animals;
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
     this.image = ko.observable(data.image);
+    this.sound = data.sound;
     this.matched = ko.observable(false);
     this.imageVisible = ko.observable(false);
 
@@ -175,6 +192,13 @@ var christmas = [
       }
     }, this);
   };
+
+  var setPack = function() {
+    switch($('packs :selected').text()){
+      case 'Animals': cards=animals;break;
+      case 'Christmas': cards=christmas;break;
+    }
+  }
 
   var ViewModel = function() {
     var self = this;
@@ -259,9 +283,13 @@ var christmas = [
        to start the next turn.*/
     this.matchFound = function() {
       setTimeout(function(){
+          var audio;
+          audio = new Audio(self.pickedTile2().sound);
+          audio.play();
       self.pickedTile1().matched(true);
       self.pickedTile2().matched(true);
       self.matchesLeft(self.matchesLeft() - 1);
+      if(self.matchesLeft() == 0){audio = new Audio('resources/sounds/cheer.wav'); audio.play();}
         self.toggleVisibility(self.pickedTile1());
         self.toggleVisibility(self.pickedTile2());
         self.initializeTurn();
