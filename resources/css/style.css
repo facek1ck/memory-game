@@ -17,6 +17,15 @@ body {
   height: 97%;
 }
 
+/*Welcome Page*/
+.welcomeImg {
+  width: 70%;
+}
+
+#dropdown{
+   margin-right: 25px;
+}
+
 /* Title and Stats */
 .title {
   font: 3em 'Fredoka One', serif;
