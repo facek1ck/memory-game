@@ -20,10 +20,20 @@ body {
 /*Welcome Page*/
 .welcomeImg {
   width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
-#dropdown{
+#packs{
    margin-right: 25px;
+}
+
+.mainOptions {
+  width: 50%;
+  margin: 0 auto;
 }
 
 /* Title and Stats */

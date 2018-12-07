@@ -15,37 +15,39 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <h1 class="title">Welcome, to cringe Memory!</h1>
-                    <img class="welcomeImg" src="resources/images/waving.gif" alt="">
-                    <h3>Please choose a cardpack: </h3>
+                    <img class="welcomeImg" src="resources/images/waving.gif" alt=""/>
                   </div>
                 </div>
-                <div class="choose">
-                  <select id="dropdown">
-                    <option value="animals">Animals</option>
-                    <option value="christmas">Christmas</option>
-                  </select>
+                <div class="mainOptions">
+                  <h3>Please choose a cardpack: </h3>
+                  <div class="choose">
+                    <select id="packs">
+                      <option value="animals">Animals</option>
+                      <option value="christmas">Christmas</option>
+                    </select>
 
-                  <input type="button" class="btn btn-primary" value="Start Game" onclick="startGame()">
+                    <input type="button" class="btn btn-primary" value="Start Game" onclick="setPack()">
 
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Preview</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Preview</button>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Preview</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(0, 4) }">
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Preview</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <div class="modal-body">
+                            <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(0, 4) }">
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -54,7 +56,9 @@
         </div>
         <script>
           function startGame() {
-              var pack = document.getElementById("dropdown").value;
+              setPack(document.getElementsByClassName("packs").value);
+
+              window.location.href = "index.html";
               //hier dann game starten mit übergebenen pack
               alert(pack);
           }
