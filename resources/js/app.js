@@ -153,14 +153,21 @@ var christmas = [
       'image': 'resources/images/Christmas/Tree.png'
     }
   ];
-  var cards = christmas;
+ 
+  var cards;
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
     this.image = ko.observable(data.image);
     this.matched = ko.observable(false);
     this.imageVisible = ko.observable(false);
-  
+    
+    var setPack = function() {
+      switch($('packs :selected').text()){
+        case 'Animals': cards=animals;break;
+        case 'Christmas': cards=christmas;break;
+      }
+    }
     // Determine if you show the tile image side or the back of tile
     this.imageUrl = ko.computed(function() {
       if (this.imageVisible()) {
