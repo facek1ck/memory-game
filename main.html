@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Welcome</title>
+  <meta name="description" content="Memory Game">
+  <meta name="author" content="mem">
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+        <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h1 class="title">Welcome to Cringe-Memory!</h1>
+                    <img class="welcomeImg" src="resources/images/waving.gif" alt=""/>
+                  </div>
+                </div>
+                <div class="mainOptions">
+                  <h3>Please choose a cardpack: </h3>
+                  <div class="choose">
+                    <select id="packs">
+                      <option value="animals">Animals</option>
+                      <option value="christmas">Christmas</option>
+                    </select>
+
+                    <input type="button" class="btn btn-primary" value="Start Game" onclick="setPack()">
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Preview</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Preview</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <span id="animals" style="display:none">
+                              <img src="resources/images/Animals/cat.png"/>
+                              <img src="resources/images/Animals/cow.png"/>
+                              <img src="resources/images/Animals/chicken.png"/>
+                              <img src="resources/images/Animals/lion.png"/>
+                            </span>
+                            <span id="christmas" style="display:none">
+                                <img src="resources/images/Christmas/Elf.png"/>
+                                <img src="resources/images/Christmas/Santa.png"/>
+                                <img src="resources/images/Christmas/Tree.png"/>
+                                <img src="resources/images/Christmas/Present.png"/>
+                              </span>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <script>
+          function startGame() {
+              setPack(document.getElementsByClassName("packs").value);
+
+              window.location.href = "index.html";
+              //hier dann game starten mit übergebenen pack
+              alert(pack);
+          }
+        </script>
+
+        <script type="text/html" id="tile-template">
+          <div class="col-xs-3">
+            <div class="tile">
+              <img src="" alt="tile" class="img-responsive center-block tile-img"
+                data-bind="attr: { src: imagePreview() }, style: { visibility: 'visible'}">
+            </div>
+          </div>
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="resources/js/start.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

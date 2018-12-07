@@ -90,7 +90,7 @@ var animals = [
       'image': 'resources/images/Animals/crow.png',
       'sound':'resources/sounds/animals/crow.wav'
     }
-  ];  
+  ];
 var christmas = [
     {
       'id': 1,
@@ -168,8 +168,11 @@ var christmas = [
       'image': 'resources/images/Christmas/Tree.png'
     }
   ];
- 
-  var cards=animals;
+
+  var backHome = function(){
+    window.location.replace('main.html');
+  }
+  var cards=window[localStorage.getItem('selectedPack')];
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
@@ -177,7 +180,11 @@ var christmas = [
     this.sound = data.sound;
     this.matched = ko.observable(false);
     this.imageVisible = ko.observable(false);
-    
+
+    //Show Preview
+    this.imagePreview = ko.computed(function() {
+        return this.image;
+    }, this);
 
     // Determine if you show the tile image side or the back of tile
     this.imageUrl = ko.computed(function() {
@@ -189,33 +196,34 @@ var christmas = [
     }, this);
   };
 
-  var setPack = function() {
-    switch($('packs :selected').text()){
+  var setPack= function() {
+    switch($('#packs :selected').text()){
       case 'Animals': cards=animals;break;
       case 'Christmas': cards=christmas;break;
     }
+    
   }
-  
+
   var ViewModel = function() {
     var self = this;
-  
+
     // Array to hold tile objects
     this.tileList = ko.observableArray([]);
-  
+
     /* The amount of tiles (not including their matching tile)
        that can be used in each game.*/
     this.NUM_TILES = 8;
-  
+
     // The amount of matches left to find
     this.matchesLeft = ko.observable(this.NUM_TILES);
-  
+
     // The amount of turns player has taken
     this.turnsTaken = ko.observable(0);
-  
+
     // Hold the two tiles the player picks each turn
     this.pickedTile1 = ko.observable();
     this.pickedTile2 = ko.observable();
-  
+
     /* Instantiate tiles. When calling, pass the name of the
        JSON object containing the tiles to use.*/
     this.addTiles = function(tiles) {
@@ -223,7 +231,7 @@ var christmas = [
         self.tileList.push(new Tile(tileItem));
       });
   };
-  
+
     /* Add/instantiate matching tiles for the tiles that will be used
        in a game.*/
     this.addMatchingTiles = function(tiles) {
@@ -234,12 +242,12 @@ var christmas = [
         }
       });
     };
-  
+
     // Shuffle tiles in tileList array
     this.shuffleTiles = function() {
      self.tileList(_.shuffle(self.tileList()));
     };
-  
+
     /* Remove extra tiles that are not needed since you
        should have no more than self.NUM_TILES tiles to play a
        game. Intended to be called after shuffleTiles() so
@@ -248,12 +256,12 @@ var christmas = [
     this.removeExtraTiles = function() {
       self.tileList.splice(self.NUM_TILES);
     };
-  
+
     // Toggles tile visibility
     this.toggleVisibility = function(tile) {
       tile.imageVisible(!tile.imageVisible());
     };
-  
+
     /* This function is called when the player clicks on a tile. It determines
        if the player is selecting the first or second tile. At the appropriate time,
        it sets the first and second tiles, displays the images,  and runs a function
@@ -273,7 +281,7 @@ var christmas = [
           }
       }
     };
-  
+
     /* This function is called by pickTile() if player selected two matching tiles.
        It shows the tiles for 1.5 seconds and the turn is over. It calls initializeTurn()
        to start the next turn.*/
@@ -291,7 +299,7 @@ var christmas = [
         self.initializeTurn();
       }, 1500);
     };
-  
+
     /* This function is called by pickTile() if player selected two tiles that do not match.
        The tiles will be visible for 2.2 seconds and then "turned over" which hides the image.*/
     this.noMatchFound = function() {
@@ -300,15 +308,15 @@ var christmas = [
         self.toggleVisibility(self.pickedTile2());
         self.initializeTurn();
       }, 2200);
-  
+
     };
-  
+
     // Called by matchFound() or noMatchFound() to reset variables for the next turn.
     this.initializeTurn = function() {
       self.pickedTile1(undefined);
       self.pickedTile2(undefined);
     };
-  
+
     /* Initialize Game. First, instantiate tiles, then shuffle tiles before removing extra
        tiles if the are more tiles intantiated than self.NUM_TILES. Add matching tiles for
        the tiles to be used, then shuffle the tiles again.*/
@@ -321,7 +329,7 @@ var christmas = [
       self.addMatchingTiles(cards);
       self.shuffleTiles();
     };
-  
+
     // Reset the game. Called when player clicks the "Play Again" button.
     this.playAgain = function() {
       self.matchesLeft(self.NUM_TILES);
@@ -330,8 +338,8 @@ var christmas = [
       self.initializeGame();
       self.initializeTurn();
     };
-  
+
     self.initializeGame();
   };
-  
+
   ko.applyBindings(new ViewModel());

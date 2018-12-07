@@ -17,6 +17,25 @@ body {
   height: 97%;
 }
 
+/*Welcome Page*/
+.welcomeImg {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#packs{
+   margin-right: 25px;
+}
+
+.mainOptions {
+  width: 50%;
+  margin: 0 auto;
+}
+
 /* Title and Stats */
 .title {
   font: 3em 'Fredoka One', serif;
