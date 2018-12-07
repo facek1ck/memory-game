@@ -42,8 +42,18 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(0, 4) }">
-                            </div>
+                            <span id="animals" style="display:none">
+                              <img src="resources/images/Animals/cat.png"/>
+                              <img src="resources/images/Animals/cow.png"/>
+                              <img src="resources/images/Animals/chicken.png"/>
+                              <img src="resources/images/Animals/lion.png"/>
+                            </span>
+                            <span id="christmas" style="display:none">
+                                <img src="resources/images/Christmas/Elf.png"/>
+                                <img src="resources/images/Christmas/Santa.png"/>
+                                <img src="resources/images/Christmas/Tree.png"/>
+                                <img src="resources/images/Christmas/Present.png"/>
+                              </span>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -76,7 +86,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="resources/js/app.js"></script>
+        <script src="resources/js/start.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

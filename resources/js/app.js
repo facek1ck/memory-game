@@ -169,7 +169,7 @@ var christmas = [
     }
   ];
 
-  var cards=animals;
+  var cards=window[localStorage.getItem('selectedPack')];
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
@@ -193,11 +193,12 @@ var christmas = [
     }, this);
   };
 
-  var setPack = function() {
-    switch($('packs :selected').text()){
+  var setPack= function() {
+    switch($('#packs :selected').text()){
       case 'Animals': cards=animals;break;
       case 'Christmas': cards=christmas;break;
     }
+    
   }
 
   var ViewModel = function() {
