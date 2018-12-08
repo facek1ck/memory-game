@@ -173,6 +173,7 @@ var christmas = [
     window.location.replace('main.html');
   }
   var cards=window[localStorage.getItem('selectedPack')];
+  
   var Tile = function(data) {
     this.id = data.id;
     this.name = ko.observable(data.name);
@@ -180,11 +181,6 @@ var christmas = [
     this.sound = data.sound;
     this.matched = ko.observable(false);
     this.imageVisible = ko.observable(false);
-
-    //Show Preview
-    this.imagePreview = ko.computed(function() {
-        return this.image;
-    }, this);
 
     // Determine if you show the tile image side or the back of tile
     this.imageUrl = ko.computed(function() {
@@ -195,14 +191,6 @@ var christmas = [
       }
     }, this);
   };
-
-  var setPack= function() {
-    switch($('#packs :selected').text()){
-      case 'Animals': cards=animals;break;
-      case 'Christmas': cards=christmas;break;
-    }
-    
-  }
 
   var ViewModel = function() {
     var self = this;
