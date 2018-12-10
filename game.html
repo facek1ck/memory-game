@@ -55,7 +55,7 @@
 
   <div class="hidden game-over" data-bind="visible: matchesLeft() === 0, css: { hidden: false }">
     <p>You Won!</p>
-    <p data-bind="style: { display: (turnsTaken() <= highscore()) ? 'inline' : 'none' }">You reached the <b>highscore!</b></p>
+    <p data-bind="style: { display: (turnsTaken() <= highscore()) ? 'inline' : 'none' }"><b>New Highscore</b></br><img src="resources/images/Pog.png"></img></p>
     <p>Your score is <span data-bind="text: turnsTaken"></span> points.</p>
     <button class="btn btn-lg btn-primary btn-play-again" data-bind="click: playAgain">Play Again</button>
   </div>

@@ -8,7 +8,7 @@ var setPack = function() {
       localStorage.setItem('selectedPack','christmas');
       break;
     }
-    window.location.replace('main.html');
+    window.location.replace('game.html');
 }
 
 $( document ).ready(function() {
