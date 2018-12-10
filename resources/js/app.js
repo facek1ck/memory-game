@@ -10,7 +10,7 @@ var animals = [
       'id': 2,
       'name': 'Chicken',
       'image': 'resources/images/Animals/chicken.png',
-      'sound':'resources/sounds/animals/cat.wav'
+      'sound':'resources/sounds/animals/chicken.wav'
     },
     {
       'id': 3,
@@ -76,7 +76,7 @@ var animals = [
       'id': 13,
       'name': 'Swan',
       'image': 'resources/images/Animals/swan.png',
-      'sound':'resources/sounds/animals/cat.wav'
+      'sound':'resources/sounds/animals/swan.wav'
     },
     {
       'id': 14,
@@ -125,12 +125,14 @@ var christmas = [
     {
       'id': 7,
       'name': 'Mistletoe',
-      'image': 'resources/images/Christmas/Mistletoe.png'
+      'image': 'resources/images/Christmas/Mistletoe.png',
+	  'sound':'resources/sounds/christmas/mistletoe.wav'
     },
     {
       'id': 8,
       'name': 'Present',
-      'image': 'resources/images/Christmas/Present.png'
+      'image': 'resources/images/Christmas/Present.png',
+	  'sound':'resources/sounds/christmas/present.wav'
     },
     {
       'id': 9,
@@ -140,7 +142,8 @@ var christmas = [
     {
       'id': 10,
       'name': 'Santa',
-      'image': 'resources/images/Christmas/Santa.png'
+      'image': 'resources/images/Christmas/Santa.png',
+	  'sound':'resources/sounds/christmas/santa.wav'
     },
     {
       'id': 11,
@@ -150,7 +153,8 @@ var christmas = [
     {
       'id': 12,
       'name': 'Sleigh',
-      'image': 'resources/images/Christmas/Sleigh.png'
+      'image': 'resources/images/Christmas/Sleigh.png',
+	  'sound':'resources/sounds/christmas/sleigh.wav'
     },
     {
       'id': 13,
@@ -291,23 +295,28 @@ var christmas = [
        It shows the tiles for 1.5 seconds and the turn is over. It calls initializeTurn()
        to start the next turn.*/
     this.matchFound = function() {
+		var audio;
+		audio = new Audio('resources/sounds/correct.wav');
+		audio.play();
+		setTimeout(function() {
+			audio = new Audio(self.pickedTile2().sound);
+			audio.play();
+		}, 500);
+		
       setTimeout(function(){
-          var audio;
-          audio = new Audio(self.pickedTile2().sound);
-          audio.play();
-      self.pickedTile1().matched(true);
-      self.pickedTile2().matched(true);
-      self.matchesLeft(self.matchesLeft() - 1);
-      if(self.matchesLeft() == 0){
-        if(self.turnsTaken() < self.highscore() || self.highscore() == 0) {
-          self.setHighscore(self.turnsTaken());
-        }
-        audio = new Audio('resources/sounds/cheer.wav');
-        audio.play();
-      }
-        self.toggleVisibility(self.pickedTile1());
-        self.toggleVisibility(self.pickedTile2());
-        self.initializeTurn();
+		self.pickedTile1().matched(true);
+		self.pickedTile2().matched(true);
+		self.matchesLeft(self.matchesLeft() - 1);
+		if(self.matchesLeft() == 0){
+			if(self.turnsTaken() < self.highscore() || self.highscore() == 0) {
+			  self.setHighscore(self.turnsTaken());
+			}
+			audio = new Audio('resources/sounds/cheer.wav');
+			audio.play();
+		}
+		self.toggleVisibility(self.pickedTile1());
+		self.toggleVisibility(self.pickedTile2());
+		self.initializeTurn();
       }, 1500);
     };
 
