@@ -170,7 +170,7 @@ var christmas = [
   ];
 
   var backHome = function(){
-    window.location.replace('main.html');
+    window.location.replace('index.html');
   }
   var cards=window[localStorage.getItem('selectedPack')];
   
@@ -211,6 +211,23 @@ var christmas = [
     // Hold the two tiles the player picks each turn
     this.pickedTile1 = ko.observable();
     this.pickedTile2 = ko.observable();
+
+    var highscoreInt;
+    var highscoreString = localStorage.getItem('highscore');
+    if (highscoreString == null) {
+      highscoreInt = 0;
+    } else {
+      highscoreInt = parseInt(highscoreString);
+    }
+
+    // The highest score
+    this.highscore = ko.observable(highscoreInt);
+
+    // Sets the highscore to a specific value
+    this.setHighscore = function(value) {
+      self.highscore(value);
+      localStorage.setItem('highscore', self.highscore());
+    }
 
     /* Instantiate tiles. When calling, pass the name of the
        JSON object containing the tiles to use.*/
@@ -281,7 +298,13 @@ var christmas = [
       self.pickedTile1().matched(true);
       self.pickedTile2().matched(true);
       self.matchesLeft(self.matchesLeft() - 1);
-      if(self.matchesLeft() == 0){audio = new Audio('resources/sounds/cheer.wav'); audio.play();}
+      if(self.matchesLeft() == 0){
+        if(self.turnsTaken() < self.highscore() || self.highscore() == 0) {
+          self.setHighscore(self.turnsTaken());
+        }
+        audio = new Audio('resources/sounds/cheer.wav');
+        audio.play();
+      }
         self.toggleVisibility(self.pickedTile1());
         self.toggleVisibility(self.pickedTile2());
         self.initializeTurn();

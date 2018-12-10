@@ -4,70 +4,75 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Welcome</title>
+  <title>Memory Game</title>
   <meta name="description" content="Memory Game">
   <meta name="author" content="mem">
   <link rel="stylesheet" href="resources/css/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
-        <div class="container">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <h1 class="title">Welcome to Cringe-Memory!</h1>
-                    <img class="welcomeImg" src="resources/images/waving.gif" alt=""/>
-                  </div>
-                </div>
-                <div class="mainOptions">
-                  <h3>Please choose a cardpack: </h3>
-                  <div class="choose">
-                    <select id="packs">
-                      <option value="animals">Animals</option>
-                      <option value="christmas">Christmas</option>
-                    </select>
+  <div class="grid-container">
+    <div class="grid-item-stats">
+      <div class="stats">
+        Matches Left: <span class="matches-left" data-bind="text: matchesLeft"></span><br>
+        Turns Taken: <span class="turns-taken" data-bind="text: turnsTaken"></span>
+        <br><br>
+        Picked Tiles:<br>
+        <div class="hidden pick" data-bind="if: pickedTile1, css: { hidden: false }">
+          <span data-bind="visible: pickedTile1, text: pickedTile1().name"></span>
+        </div>
+        <div class="hidden pick" data-bind="if: pickedTile2, css: { hidden: false }">
+          <span data-bind="visible: pickedTile2, text: pickedTile2().name"></span>
+        </div>
+      </div>
+    </div>
 
-                    <input type="button" class="btn btn-primary" value="Start Game" onclick="setPack()">
+    <div class="grid-item-game">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <span style="display:inline;">
+            <button style="float:right;" type="button" class="btn btn-primary" onclick="backHome()"><i class="fa fa-home"></i></button>
+            <h1 class="title">Memory Game</h1>
+          </span>
+          </div>
+        </div>
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Preview</button>
+        <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(0, 4) }"></div>
+        <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(4, 8) }"></div>
+        <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(8, 12) }"></div>
+        <div class="row game-row" data-bind="template: { name: 'tile-template', foreach: tileList().slice(12) }"></div>
+      </div>
+    </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Preview</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <span id="animals" style="display:none">
-                              <img src="resources/images/Animals/cat.png"/>
-                              <img src="resources/images/Animals/cow.png"/>
-                              <img src="resources/images/Animals/chicken.png"/>
-                              <img src="resources/images/Animals/lion.png"/>
-                            </span>
-                            <span id="christmas" style="display:none">
-                                <img src="resources/images/Christmas/Elf.png"/>
-                                <img src="resources/images/Christmas/Santa.png"/>
-                                <img src="resources/images/Christmas/Tree.png"/>
-                                <img src="resources/images/Christmas/Present.png"/>
-                              </span>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="resources/js/start.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <div class="grid-item-score">
+      <div class="highscorecontainer">
+        <span data-bind="click: function() { setHighscore(0) }">Highscore</span>: <span class="highscore" data-bind="text: highscore"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden game-over" data-bind="visible: matchesLeft() === 0, css: { hidden: false }">
+    <p>You Won!</p>
+    <p data-bind="style: { display: (turnsTaken() <= highscore()) ? 'inline' : 'none' }">You reached the <b>highscore!</b></p>
+    <p>Your score is <span data-bind="text: turnsTaken"></span> points.</p>
+    <button class="btn btn-lg btn-primary btn-play-again" data-bind="click: playAgain">Play Again</button>
+  </div>
+
+  <script type="text/html" id="tile-template">
+    <div class="col-xs-3">
+    <div class="tile">
+    <img src="" alt="tile" class="img-responsive center-block tile-img"
+    data-bind="attr: { src: imageUrl() }, style: { visibility: !matched() ? 'visible' : 'hidden' }, click: $parent.pickTile">
+    </div>
+    </div>
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="resources/js/app.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
