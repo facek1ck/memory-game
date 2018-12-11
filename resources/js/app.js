@@ -308,7 +308,7 @@ var christmas = [
 		self.pickedTile2().matched(true);
 		self.matchesLeft(self.matchesLeft() - 1);
 		if(self.matchesLeft() == 0){
-			if(self.turnsTaken() < self.highscore() || self.highscore() == 0) {
+			if((self.turnsTaken() < self.highscore()) || self.highscore() == 0) {
 			  self.setHighscore(self.turnsTaken());
 			}
 			audio = new Audio('resources/sounds/cheer.wav');
